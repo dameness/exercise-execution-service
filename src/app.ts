@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { errorHandler } from "./middlewares/errorHandler";
+import { authRouter } from "./modules/auth/auth.router";
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-// rotas dos módulos serão montadas aqui nos passos seguintes
+app.use("/auth", authRouter);
 
 app.use(errorHandler);
 
